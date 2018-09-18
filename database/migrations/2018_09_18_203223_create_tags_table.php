@@ -4,20 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLinksTable extends Migration {
+class CreateTagsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up() {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('link', 1000)->index();
-            $table->string('description', 1000);
-            $table->string('title', 100);
-            $table->integer('user_id');
-            $table->boolean('private')->default(true);
+            $table->string('tag');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ class CreateLinksTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('tags');
     }
 }
