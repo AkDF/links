@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
@@ -18,7 +18,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'login', 'email','api_token','password'
     ];
 
     /**
@@ -27,6 +27,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password'
     ];
+    public $table = 'users';
+
+
+    static function logout($token){
+       return self::where('api_token',$token)->update(['api_token'=>'']);
+    }
+
+
+
 }
